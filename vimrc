@@ -33,7 +33,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 set foldmethod=syntax
 execute pathogen#infect()
-call pathogen#helptags()
+"call pathogen#helptags()
 filetype plugin indent on
 syntax on
 "powerline{
@@ -48,3 +48,16 @@ let Tlist_Use_Right_Window = 1
 let Tlist_GainFocus_on_ToggleOpen = 1
 nnoremap <leader>tl: Tlist<CR>
 "}
+
+function HeaderPython()
+    call setline(1, "#!/usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    call append(2, "# weidongfang @ " . strftime('%Y-%m-%d %T', localtime()))
+    normal G
+    normal G
+    normal o
+    normal o
+endf
+
+autocmd bufnewfile *.py call HeaderPython()
+
